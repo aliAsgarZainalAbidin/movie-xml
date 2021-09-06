@@ -8,7 +8,7 @@
     android:background="@color/dark_blue_900">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcv_ipb_container"
+        android:id="@+id/mcv_ip_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_ipb_image"
+            android:id="@+id/iv_ip_image"
             android:layout_width="123dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -26,7 +26,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtv_ipb_title"
+        android:id="@+id/mtv_ip_title"
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,13 +35,13 @@
         android:maxLines="1"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/mcv_ipb_container"
-        app:layout_constraintStart_toStartOf="@id/mcv_ipb_container"
-        app:layout_constraintTop_toBottomOf="@+id/mcv_ipb_container"
+        app:layout_constraintEnd_toEndOf="@id/mcv_ip_container"
+        app:layout_constraintStart_toStartOf="@id/mcv_ip_container"
+        app:layout_constraintTop_toBottomOf="@+id/mcv_ip_container"
         tools:text="F9 askkkasd kjasdlkj" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtv_ipb_date"
+        android:id="@+id/mtv_ip_date"
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -49,17 +49,17 @@
         android:maxLines="1"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/mcv_ipb_container"
-        app:layout_constraintStart_toStartOf="@id/mcv_ipb_container"
-        app:layout_constraintTop_toBottomOf="@+id/mtv_ipb_title"
+        app:layout_constraintEnd_toEndOf="@id/mcv_ip_container"
+        app:layout_constraintStart_toStartOf="@id/mcv_ip_container"
+        app:layout_constraintTop_toBottomOf="@+id/mtv_ip_title"
         tools:text="2021-11-2" />
 
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        app:layout_constraintBottom_toBottomOf="@id/mcv_ipb_container"
-        app:layout_constraintEnd_toEndOf="@id/mcv_ipb_container"
-        app:layout_constraintTop_toBottomOf="@id/mcv_ipb_container"
-        android:id="@+id/cpi_ipb_indicator"
+        app:layout_constraintBottom_toBottomOf="@id/mcv_ip_container"
+        app:layout_constraintEnd_toEndOf="@id/mcv_ip_container"
+        app:layout_constraintTop_toBottomOf="@id/mcv_ip_container"
+        android:id="@+id/cpi_ip_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_ellipse_1"
@@ -68,16 +68,16 @@
         app:indicatorColor="@color/green_500" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/mtv_ipb_progress"
+        android:id="@+id/mtv_ip_progress"
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="2dp"
         android:text="80%"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/cpi_ipb_indicator"
-        app:layout_constraintEnd_toEndOf="@id/cpi_ipb_indicator"
-        app:layout_constraintStart_toStartOf="@id/cpi_ipb_indicator"
-        app:layout_constraintTop_toTopOf="@id/cpi_ipb_indicator" />
+        app:layout_constraintBottom_toBottomOf="@id/cpi_ip_indicator"
+        app:layout_constraintEnd_toEndOf="@id/cpi_ip_indicator"
+        app:layout_constraintStart_toStartOf="@id/cpi_ip_indicator"
+        app:layout_constraintTop_toTopOf="@id/cpi_ip_indicator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

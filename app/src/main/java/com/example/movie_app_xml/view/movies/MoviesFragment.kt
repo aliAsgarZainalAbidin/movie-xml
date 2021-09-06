@@ -12,6 +12,8 @@ import com.example.movie_app_xml.data.AppDatabase
 import com.example.movie_app_xml.data.Repository
 import com.example.movie_app_xml.databinding.FragmentMoviesBinding
 import com.example.movie_app_xml.view.adapter.NowPlayingAdapter
+import com.example.movie_app_xml.view.adapter.PopularMoviesAdapter
+import com.example.movie_app_xml.view.adapter.UpcomingAdapter
 import com.example.movie_app_xml.view_model.MovieViewModel
 
 class MoviesFragment : Fragment() {
@@ -44,6 +46,26 @@ class MoviesFragment : Fragment() {
                 layoutManager = lm
             }
         })
+
+        movieViewModel.getUpcomingMovies().observe(viewLifecycleOwner, {
+            val adapterUpcoming = UpcomingAdapter(it)
+            val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvMoviesUpcoming.apply {
+                adapter = adapterUpcoming
+                layoutManager = lm
+            }
+        })
+
+        movieViewModel.getPopularMovies().observe(viewLifecycleOwner, {
+            val popularMoviesAdapter = PopularMoviesAdapter(it)
+            val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvMoviesPopularMovies.apply {
+                adapter = popularMoviesAdapter
+                layoutManager = lm
+            }
+        })
+
+
     }
 
 }
