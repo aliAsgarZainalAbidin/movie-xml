@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="8dp"
-    android:background="@color/dark_blue_900">
+    android:background="@color/dark_blue_900"
+    android:paddingHorizontal="8dp">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/mcv_il_image"
@@ -41,6 +41,7 @@
         tools:text="Tv Show amazing show wonderful" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_il_date"
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -53,18 +54,19 @@
         tools:text="2021-08-11" />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
-        app:layout_constraintBottom_toBottomOf="@id/mcv_il_image"
-        app:layout_constraintEnd_toEndOf="@id/mcv_il_image"
-        app:layout_constraintTop_toBottomOf="@id/mcv_il_image"
         android:id="@+id/cpi_il_indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_ellipse_1"
         android:elevation="1dp"
         android:progress="80"
-        app:indicatorColor="@color/green_500" />
+        app:indicatorColor="@color/green_500"
+        app:layout_constraintBottom_toBottomOf="@id/mcv_il_image"
+        app:layout_constraintEnd_toEndOf="@id/mcv_il_image"
+        app:layout_constraintTop_toBottomOf="@id/mcv_il_image" />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/mtv_il_progress"
         style="@style/TextAppearance.MaterialComponents.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
