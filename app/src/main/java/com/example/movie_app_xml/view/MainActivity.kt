@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         navController = supportFragmentManager.findFragmentById(R.id.fcv_main_container)?.findNavController() as NavController
+        navController.popBackStack( navController.currentDestination?.id ?: R.id.overview, true)
         binding.botnavMainContainer.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.overview -> {
