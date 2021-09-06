@@ -18,6 +18,7 @@ import com.example.movie_app_xml.data.AppDatabase
 import com.example.movie_app_xml.data.Repository
 import com.example.movie_app_xml.databinding.FragmentOverviewBinding
 import com.example.movie_app_xml.view.adapter.PopularAdapter
+import com.example.movie_app_xml.view.adapter.TrendingAdapter
 import com.example.movie_app_xml.view_model.OverviewViewModel
 
 class OverviewFragment : Fragment() {
@@ -48,6 +49,16 @@ class OverviewFragment : Fragment() {
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvOverviewPopular.apply {
                 adapter = peopleAdapter
+                layoutManager = lm
+            }
+        })
+
+        overviewViewModel.getTrendingMovies().observe(viewLifecycleOwner, {
+            val trendingAdapter = TrendingAdapter(it)
+            trendingAdapter.notifyDataSetChanged()
+            val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            binding.rvOverviewTrending.apply {
+                adapter = trendingAdapter
                 layoutManager = lm
             }
         })

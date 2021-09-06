@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
+    android:paddingHorizontal="8dp"
     android:background="@color/dark_blue_900">
 
     <com.google.android.material.card.MaterialCardView
@@ -52,26 +52,17 @@
         app:layout_constraintTop_toBottomOf="@id/mtv_il_title"
         tools:text="2021-08-11" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/mcv_il_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        app:cardCornerRadius="40dp"
+    <com.google.android.material.progressindicator.CircularProgressIndicator
         app:layout_constraintBottom_toBottomOf="@id/mcv_il_image"
         app:layout_constraintEnd_toEndOf="@id/mcv_il_image"
-        app:layout_constraintTop_toBottomOf="@id/mcv_il_image">
-
-        <com.google.android.material.progressindicator.CircularProgressIndicator
-            android:id="@+id/cpi_il_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/dark_blue_900"
-            android:elevation="1dp"
-            android:progress="80"
-            app:indicatorColor="@color/green_500" />
-
-    </com.google.android.material.card.MaterialCardView>
+        app:layout_constraintTop_toBottomOf="@id/mcv_il_image"
+        android:id="@+id/cpi_il_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_ellipse_1"
+        android:elevation="1dp"
+        android:progress="80"
+        app:indicatorColor="@color/green_500" />
 
     <com.google.android.material.textview.MaterialTextView
         style="@style/TextAppearance.MaterialComponents.Caption"
@@ -80,9 +71,9 @@
         android:elevation="2dp"
         android:text="80%"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/mcv_il_progress"
-        app:layout_constraintEnd_toEndOf="@id/mcv_il_progress"
-        app:layout_constraintStart_toStartOf="@id/mcv_il_progress"
-        app:layout_constraintTop_toTopOf="@id/mcv_il_progress" />
+        app:layout_constraintBottom_toBottomOf="@id/cpi_il_indicator"
+        app:layout_constraintEnd_toEndOf="@id/cpi_il_indicator"
+        app:layout_constraintStart_toStartOf="@id/cpi_il_indicator"
+        app:layout_constraintTop_toTopOf="@id/cpi_il_indicator" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
