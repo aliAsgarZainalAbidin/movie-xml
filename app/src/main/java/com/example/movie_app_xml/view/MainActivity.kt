@@ -22,9 +22,14 @@ class MainActivity : AppCompatActivity() {
         navController = supportFragmentManager.findFragmentById(R.id.fcv_main_container)?.findNavController() as NavController
         navController.popBackStack( navController.currentDestination?.id ?: R.id.overview, true)
         binding.botnavMainContainer.setOnNavigationItemSelectedListener {
+            navController.popBackStack()
             when(it.itemId){
                 R.id.overview -> {
                     navController.navigate(R.id.overviewFragment)
+                    true
+                }
+                R.id.movies -> {
+                    navController.navigate(R.id.moviesFragment)
                     true
                 }
                 else -> true

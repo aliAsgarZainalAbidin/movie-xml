@@ -10,4 +10,9 @@
         android:name="com.example.movie_app_xml.view.overview.OverviewFragment"
         android:label="fragment_overview"
         tools:layout="@layout/fragment_overview" />
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.example.movie_app_xml.view.movies.MoviesFragment"
+        android:label="fragment_movies"
+        tools:layout="@layout/fragment_movies" />
 </navigation>
