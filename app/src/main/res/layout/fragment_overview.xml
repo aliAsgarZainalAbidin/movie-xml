@@ -26,15 +26,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/item_popular"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/rv_overview_popular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:orientation="horizontal"
             android:paddingHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_popular" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_popular"
+            tools:listitem="@layout/item_popular" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_overview_title_trending"
@@ -54,8 +54,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:orientation="horizontal"
             android:paddingHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_trending" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_trending"
+            tools:listitem="@layout/item_potrait_big" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_overview_title_ontheair"
@@ -71,16 +74,16 @@
             app:layout_constraintTop_toBottomOf="@id/rv_overview_trending" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:orientation="horizontal"
-
-            tools:listitem="@layout/item_landscape"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:id="@+id/rv_overview_ontheair"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:orientation="horizontal"
             android:paddingHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_ontheair" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_ontheair"
+            tools:listitem="@layout/item_landscape" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
