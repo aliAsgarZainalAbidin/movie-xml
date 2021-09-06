@@ -18,6 +18,7 @@
 
     <com.google.android.material.textview.MaterialTextView
         tools:text="Andrew Garfield"
+        android:id="@+id/mtv_ip_name"
         android:textStyle="bold"
         android:textAlignment="center"
         android:maxLines="1"
