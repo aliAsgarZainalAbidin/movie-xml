@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingEnd="8dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/dark_blue_900"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_ip_image"
+        android:layout_width="80dp"
+        android:src="@drawable/example_photo_profile"
+        android:layout_height="80dp"
+        app:civ_border_width="4dp"
+        app:civ_border_color="@color/green_500" />
+
+    <com.google.android.material.textview.MaterialTextView
+        tools:text="Andrew Garfield"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
