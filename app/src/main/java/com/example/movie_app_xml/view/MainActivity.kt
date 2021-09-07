@@ -36,6 +36,10 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.tvShowsFragment)
                     true
                 }
+                R.id.save -> {
+                    navController.navigate(R.id.saveFragment)
+                    true
+                }
                 else -> true
             }
         }
