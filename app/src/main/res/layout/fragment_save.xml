@@ -8,10 +8,15 @@
     tools:context=".view.save.SaveFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/dark_blue_900"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabLayout
+            app:tabBackground="@color/dark_blue_900"
+            android:background="@color/dark_blue_900"
+            app:tabTextColor="@color/white"
+            app:tabIndicatorColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
