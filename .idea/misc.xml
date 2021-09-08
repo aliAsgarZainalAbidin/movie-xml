@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/drawable-v24/ic_ellipse_2.xml" value="0.536" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/drawable/bg_chip.xml" value="0.290625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/drawable/bg_progress.xml" value="0.290625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.290625" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/drawable/ic_ellipse_1.xml" value="0.290625" />
@@ -16,6 +18,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/layout/fragment_tab_movies.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/layout/fragment_tab_tv_shows.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/layout/fragment_tv_shows.xml" value="0.27447916666666666" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/layout/item_chip.xml" value="0.8800000000000001" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/layout/item_landscape.xml" value="0.72" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/layout/item_popular.xml" value="1.0" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/MovieAppXML/app/src/main/res/layout/item_portrait.xml" value="0.27447916666666666" />
