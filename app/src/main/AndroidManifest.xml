@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieAppXML">
         <activity
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+            android:name=".view.BaseActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.splash.SplashScreenActivity"
-            android:exported="true" >
+            android:exported="true"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +27,7 @@
         </activity>
         <activity
             android:name=".view.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
