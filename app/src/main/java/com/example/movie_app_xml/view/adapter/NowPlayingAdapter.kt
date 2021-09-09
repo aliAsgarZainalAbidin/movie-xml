@@ -2,15 +2,20 @@ package com.example.movie_app_xml.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.movie_app_xml.BuildConfig
 import com.example.movie_app_xml.R
 import com.example.movie_app_xml.data.entity.Playing
 import com.example.movie_app_xml.databinding.ItemPotraitBigBinding
+import com.example.movie_app_xml.util.Const
+import com.example.movie_app_xml.util.DetailConst
 
 class NowPlayingAdapter(
-    private val listPlayingMovies : List<Playing>
+    private val listPlayingMovies : List<Playing>,
+    private val navController: NavController
 ) : RecyclerView.Adapter<NowPlayingAdapter.PlayingViewHolder>(){
 
     class PlayingViewHolder(private val binding: ItemPotraitBigBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -36,6 +41,15 @@ class NowPlayingAdapter(
 
     override fun onBindViewHolder(holder: PlayingViewHolder, position: Int) {
         holder.bind(listPlayingMovies[position])
+        holder.itemView.setOnClickListener {
+            val item = listPlayingMovies[position]
+            val data = bundleOf(
+                DetailConst.ID to item.id,
+                Const.TYPE to Const.TYPE_MOVIE,
+                Const.TYPE_REPO to Const.TYPE_REPO_REMOTE
+            )
+            navController.navigate(R.id.detailFragment, data)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_app_xml.R
 import com.example.movie_app_xml.api.ApiFactory
@@ -38,8 +40,9 @@ class MoviesFragment : Fragment() {
         movieViewModel = MovieViewModel()
         movieViewModel.repository = Repository(restApi, AppDatabase.getDatabase(requireContext()))
 
+        val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         movieViewModel.getPlayingMovies().observe(viewLifecycleOwner, {
-            val playingAdapter = NowPlayingAdapter(it)
+            val playingAdapter = NowPlayingAdapter(it,navController)
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvMoviesPlaying.apply {
                 adapter = playingAdapter
@@ -48,7 +51,7 @@ class MoviesFragment : Fragment() {
         })
 
         movieViewModel.getUpcomingMovies().observe(viewLifecycleOwner, {
-            val adapterUpcoming = UpcomingAdapter(it)
+            val adapterUpcoming = UpcomingAdapter(it,navController)
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvMoviesUpcoming.apply {
                 adapter = adapterUpcoming
@@ -57,7 +60,7 @@ class MoviesFragment : Fragment() {
         })
 
         movieViewModel.getPopularMovies().observe(viewLifecycleOwner, {
-            val popularMoviesAdapter = PopularMoviesAdapter(it)
+            val popularMoviesAdapter = PopularMoviesAdapter(it,navController)
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvMoviesPopularMovies.apply {
                 adapter = popularMoviesAdapter

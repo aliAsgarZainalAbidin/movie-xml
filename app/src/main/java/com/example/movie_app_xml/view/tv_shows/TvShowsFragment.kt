@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_app_xml.R
 import com.example.movie_app_xml.api.ApiFactory
@@ -36,8 +38,9 @@ class TvShowsFragment : Fragment() {
         tvViewModel = TvViewModel()
         tvViewModel.repository = Repository(restApi, AppDatabase.getDatabase(requireContext()))
 
+        val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         tvViewModel.getOnTheAir().observe(viewLifecycleOwner, {
-            val ontheairAdapter = OnTheAirAdapter(it)
+            val ontheairAdapter = OnTheAirAdapter(it,navController)
             binding.rvTvShowsOntheair.apply {
                 adapter = ontheairAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -45,7 +48,7 @@ class TvShowsFragment : Fragment() {
         })
 
         tvViewModel.getAiringToday().observe(viewLifecycleOwner, {
-            val airingTodayAdapter = AiringTodayAdapter(it)
+            val airingTodayAdapter = AiringTodayAdapter(it,navController)
             binding.rvTvShowsAiring.apply {
                 adapter = airingTodayAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -53,7 +56,7 @@ class TvShowsFragment : Fragment() {
         })
 
         tvViewModel.getPopularTv().observe(viewLifecycleOwner, {
-            val popularTvShowsAdapter = PopularTvShowsAdapter(it)
+            val popularTvShowsAdapter = PopularTvShowsAdapter(it,navController)
             binding.rvTvShowsPopularTvShows.apply {
                 adapter = popularTvShowsAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

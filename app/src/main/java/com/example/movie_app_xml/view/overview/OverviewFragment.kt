@@ -70,7 +70,7 @@ class OverviewFragment : Fragment() {
         })
 
         overviewViewModel.getOnTheAir().observe(viewLifecycleOwner, {
-            val onTheAirAdapter = OnTheAirAdapter(it)
+            val onTheAirAdapter = OnTheAirAdapter(it,navController)
             onTheAirAdapter.notifyDataSetChanged()
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvOverviewOntheair.apply {
