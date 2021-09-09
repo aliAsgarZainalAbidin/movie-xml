@@ -111,7 +111,7 @@ class DetailFragment : Fragment() {
         if (connectionManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.state == NetworkInfo.State.CONNECTED ||
             connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED && !typeRepo?.equals(Const.TYPE_REPO_LOCAL)!!
         ) {
-            binding.containerItemFdCl.visibility = View.VISIBLE
+            binding.loading.root.visibility = View.VISIBLE
             binding.offline.root.visibility = View.GONE
             if (id != null && type != null) {
                 when (typeRepo) {
@@ -161,6 +161,7 @@ class DetailFragment : Fragment() {
                                 rvFdChipGroup.adapter = GenreAdapter(listGenre)
                                 rvFdChipGroup.adapter?.notifyDataSetChanged()
                                 mtvFdOverview.text = it.overview
+                                setContentDetail()
                             }
                         })
                     }
@@ -173,12 +174,14 @@ class DetailFragment : Fragment() {
                                 getLocalTvShow(id.toString())
                             }
                         }
+                        setContentDetail()
                     }
                 }
             }
 //            IdleContent()
         } else {
             binding.containerItemFdCl.visibility = View.GONE
+            binding.loading.root.visibility = View.GONE
             binding.offline.root.visibility = View.VISIBLE
         }
 
@@ -188,6 +191,7 @@ class DetailFragment : Fragment() {
     fun getLocalMovie(id: String) {
         detailViewModel.getMovieById(id).observe(viewLifecycleOwner, {
             binding.apply {
+                backdropPath = it.backdropPath.toString()
                 ivFdImage.load(it.backdropPath)
                 tvDetailTitle.text = it.title
                 mtvFdTitleDate.text = "Release Date"
@@ -203,6 +207,10 @@ class DetailFragment : Fragment() {
                 if (isSaved) {
                     lavFdSave.playAnimation()
                 }
+                if (it !=null){
+                    loading.root.visibility = View.GONE
+                    containerItemFdCl.visibility = View.VISIBLE
+                }
             }
         })
     }
@@ -210,6 +218,7 @@ class DetailFragment : Fragment() {
     fun getLocalTvShow(id: String) {
         detailViewModel.getTvShowById(id).observe(viewLifecycleOwner, {
             binding.apply {
+                backdropPath = it.backdropPath.toString()
                 ivFdImage.load(it.backdropPath)
                 tvDetailTitle.text = it.name
                 mtvFdTitleDate.text = "First Air Date"
@@ -225,8 +234,22 @@ class DetailFragment : Fragment() {
                 if (isSaved) {
                     lavFdSave.playAnimation()
                 }
+                if (it !=null){
+                    loading.root.visibility = View.GONE
+                    containerItemFdCl.visibility = View.VISIBLE
+                }
             }
         })
+    }
+
+    fun setContentDetail(){
+        if (backdropPath.isNotEmpty()){
+            binding.containerItemFdCl.visibility = View.VISIBLE
+            binding.loading.root.visibility = View.GONE
+        } else {
+            binding.containerItemFdCl.visibility = View.GONE
+            binding.loading.root.visibility = View.VISIBLE
+        }
     }
 
 }

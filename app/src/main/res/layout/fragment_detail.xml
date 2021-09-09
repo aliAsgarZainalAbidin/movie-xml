@@ -231,6 +231,9 @@
         <include android:id="@+id/offline"
             layout="@layout/offline"/>
 
+        <include android:id="@+id/loading"
+            layout="@layout/loading_layout"/>
+
     </FrameLayout>
 
 </androidx.core.widget.NestedScrollView>
