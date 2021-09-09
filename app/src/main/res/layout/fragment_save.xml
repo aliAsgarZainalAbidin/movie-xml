@@ -13,8 +13,8 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabLayout
-            app:tabBackground="@color/dark_blue_900"
-            android:background="@color/dark_blue_900"
+            app:tabBackground="@color/dark_blue_900_tt"
+            android:background="#1B1C20"
             app:tabTextColor="@color/white"
             app:tabIndicatorColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"

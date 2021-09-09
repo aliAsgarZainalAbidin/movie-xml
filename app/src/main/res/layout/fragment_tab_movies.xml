@@ -4,17 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#1B1C20"
     android:layout_width="match_parent"
-    android:paddingHorizontal="16dp"
     android:layout_height="match_parent"
     tools:context=".view.save.TabMoviesFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_ftm_list"
-        android:layout_marginTop="16dp"
-        tools:listitem="@layout/item_row"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_item_ftm_cl"
+            android:visibility="gone"
+            android:paddingHorizontal="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_ftm_list"
+                android:layout_marginTop="16dp"
+                tools:listitem="@layout/item_row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include android:id="@+id/empty"
+            layout="@layout/empty_layout"/>
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

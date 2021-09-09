@@ -12,6 +12,8 @@ import com.example.movie_app_xml.R
 import com.example.movie_app_xml.api.ApiFactory
 import com.example.movie_app_xml.data.AppDatabase
 import com.example.movie_app_xml.data.Repository
+import com.example.movie_app_xml.data.entity.MyMovie
+import com.example.movie_app_xml.data.entity.PopularTv
 import com.example.movie_app_xml.databinding.FragmentTabMoviesBinding
 import com.example.movie_app_xml.databinding.FragmentTabTvShowsBinding
 import com.example.movie_app_xml.view.adapter.TabMoviesAdapter
@@ -25,6 +27,7 @@ class TabMoviesFragment : Fragment() {
     private lateinit var _binding : FragmentTabMoviesBinding
     private val binding get() = _binding
     private lateinit var tabMovieViewModel: TabMovieViewModel
+    private var listMovies : ArrayList<MyMovie> =arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,13 +47,25 @@ class TabMoviesFragment : Fragment() {
 
         val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         tabMovieViewModel.getAllMyMovies().observe(viewLifecycleOwner, {
+            listMovies.addAll(it)
             binding.rvFtmList.apply {
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                val adaptertvShow = TabMoviesAdapter(it,navController)
+                val adaptertvShow = TabMoviesAdapter(listMovies,navController)
                 adaptertvShow.notifyDataSetChanged()
                 adapter = adaptertvShow
             }
+            setLoading()
         })
+    }
+
+    fun setLoading(){
+        if (listMovies.size > 0){
+            binding.containerItemFtmCl.visibility = View.VISIBLE
+            binding.empty.root.visibility = View.GONE
+        } else {
+            binding.containerItemFtmCl.visibility = View.GONE
+            binding.empty.root.visibility = View.VISIBLE
+        }
     }
 
 }
