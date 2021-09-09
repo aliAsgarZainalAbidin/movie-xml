@@ -62,6 +62,8 @@ class DetailFragment : Fragment() {
                         Const.TYPE_MOVIE -> detailViewModel.deleteMovieById(id.toString())
                         Const.TYPE_TV -> detailViewModel.deleteTvShowById(id.toString())
                     }
+                    lavFdSave.progress = 0f
+                    isSaved = false
                 } else {
                     when (type) {
                         Const.TYPE_MOVIE -> {
@@ -98,6 +100,8 @@ class DetailFragment : Fragment() {
                             detailViewModel.insertToMyTvShow(myTvShow)
                         }
                     }
+                    lavFdSave.progress = 1f
+                    isSaved = true
                 }
             }
         }
