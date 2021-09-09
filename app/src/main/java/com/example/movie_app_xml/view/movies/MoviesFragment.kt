@@ -12,6 +12,9 @@ import com.example.movie_app_xml.R
 import com.example.movie_app_xml.api.ApiFactory
 import com.example.movie_app_xml.data.AppDatabase
 import com.example.movie_app_xml.data.Repository
+import com.example.movie_app_xml.data.entity.Playing
+import com.example.movie_app_xml.data.entity.PopularMovies
+import com.example.movie_app_xml.data.entity.Upcoming
 import com.example.movie_app_xml.databinding.FragmentMoviesBinding
 import com.example.movie_app_xml.view.adapter.NowPlayingAdapter
 import com.example.movie_app_xml.view.adapter.PopularMoviesAdapter
@@ -24,6 +27,9 @@ class MoviesFragment : Fragment() {
     private lateinit var _binding : FragmentMoviesBinding
     private val restApi by lazy { ApiFactory.create() }
     private val binding get() = _binding
+    private var listPlaying : ArrayList<Playing> = arrayListOf()
+    private var listUpComing : ArrayList<Upcoming> =arrayListOf()
+    private var listPopularMovies : ArrayList<PopularMovies> =arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,33 +48,48 @@ class MoviesFragment : Fragment() {
 
         val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         movieViewModel.getPlayingMovies().observe(viewLifecycleOwner, {
-            val playingAdapter = NowPlayingAdapter(it,navController)
+            listPlaying.addAll(it)
+            val playingAdapter = NowPlayingAdapter(listPlaying,navController)
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvMoviesPlaying.apply {
                 adapter = playingAdapter
                 layoutManager = lm
             }
+            setLoading()
         })
 
         movieViewModel.getUpcomingMovies().observe(viewLifecycleOwner, {
-            val adapterUpcoming = UpcomingAdapter(it,navController)
+            listUpComing.addAll(it)
+            val adapterUpcoming = UpcomingAdapter(listUpComing,navController)
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvMoviesUpcoming.apply {
                 adapter = adapterUpcoming
                 layoutManager = lm
             }
+            setLoading()
         })
 
         movieViewModel.getPopularMovies().observe(viewLifecycleOwner, {
-            val popularMoviesAdapter = PopularMoviesAdapter(it,navController)
+            listPopularMovies.addAll(it)
+            val popularMoviesAdapter = PopularMoviesAdapter(listPopularMovies,navController)
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvMoviesPopularMovies.apply {
                 adapter = popularMoviesAdapter
                 layoutManager = lm
             }
+            setLoading()
         })
 
+    }
 
+    fun setLoading(){
+        if (listPlaying.size > 0 && listUpComing.size > 0 && listPopularMovies.size > 0){
+            binding.containerItemFmCl.visibility = View.VISIBLE
+            binding.loading.root.visibility = View.GONE
+        } else {
+            binding.containerItemFmCl.visibility = View.GONE
+            binding.loading.root.visibility = View.VISIBLE
+        }
     }
 
 }

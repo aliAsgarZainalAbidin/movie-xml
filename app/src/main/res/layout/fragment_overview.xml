@@ -7,93 +7,105 @@
     android:fillViewport="true"
     tools:context=".view.overview.OverviewFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
+        android:background="@color/dark_blue_900"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/dark_blue_900">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_overview_title_popular"
-            style="@style/TextAppearance.MaterialComponents.Subtitle1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Popular People"
-            android:textColor="@color/green_500"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_overview_subtitle_popular"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Millions of movies, Tv Shows and people to discover"
-            android:textColor="@color/green_500"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_popular" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_overview_popular"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_item_fo_cl"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/tv_overview_subtitle_popular"
-            tools:listitem="@layout/item_popular" />
+            android:layout_height="match_parent"
+            android:background="@color/dark_blue_900">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_overview_title_trending"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Trending"
-            android:textColor="@color/green_500"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_overview_popular" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_overview_title_popular"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Popular People"
+                android:textColor="@color/green_500"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_overview_trending"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_trending"
-            tools:listitem="@layout/item_potrait_big" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_overview_subtitle_popular"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Millions of movies, Tv Shows and people to discover"
+                android:textColor="@color/green_500"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_overview_title_popular" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_overview_title_ontheair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="On The Air"
-            android:textColor="@color/green_500"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_overview_trending" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_overview_popular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_overview_subtitle_popular"
+                tools:listitem="@layout/item_popular" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_overview_ontheair"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/tv_overview_title_ontheair"
-            tools:listitem="@layout/item_landscape" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_overview_title_trending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Trending"
+                android:textColor="@color/green_500"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_overview_popular" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_overview_trending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_overview_title_trending"
+                tools:listitem="@layout/item_potrait_big" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_overview_title_ontheair"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="On The Air"
+                android:textColor="@color/green_500"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_overview_trending" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_overview_ontheair"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_overview_title_ontheair"
+                tools:listitem="@layout/item_landscape" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include android:id="@+id/loading"
+            layout="@layout/loading_layout"/>
+
+    </FrameLayout>
 
 </androidx.core.widget.NestedScrollView>

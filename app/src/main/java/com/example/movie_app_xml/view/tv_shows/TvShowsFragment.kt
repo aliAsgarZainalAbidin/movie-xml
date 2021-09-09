@@ -12,6 +12,7 @@ import com.example.movie_app_xml.R
 import com.example.movie_app_xml.api.ApiFactory
 import com.example.movie_app_xml.data.AppDatabase
 import com.example.movie_app_xml.data.Repository
+import com.example.movie_app_xml.data.entity.*
 import com.example.movie_app_xml.databinding.FragmentTvShowsBinding
 import com.example.movie_app_xml.view.adapter.AiringTodayAdapter
 import com.example.movie_app_xml.view.adapter.OnTheAirAdapter
@@ -24,6 +25,9 @@ class TvShowsFragment : Fragment() {
     private lateinit var tvViewModel: TvViewModel
     private val binding get() = _binding
     private val restApi by lazy { ApiFactory.create() }
+    private var listOnTheAir : ArrayList<OnTheAir> = arrayListOf()
+    private var listAiringToday : ArrayList<AiringToday> =arrayListOf()
+    private var listPopularTv : ArrayList<PopularTv> =arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,28 +44,44 @@ class TvShowsFragment : Fragment() {
 
         val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         tvViewModel.getOnTheAir().observe(viewLifecycleOwner, {
-            val ontheairAdapter = OnTheAirAdapter(it,navController)
+            listOnTheAir.addAll(it)
+            val ontheairAdapter = OnTheAirAdapter(listOnTheAir,navController)
             binding.rvTvShowsOntheair.apply {
                 adapter = ontheairAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
+            setLoading()
         })
 
         tvViewModel.getAiringToday().observe(viewLifecycleOwner, {
-            val airingTodayAdapter = AiringTodayAdapter(it,navController)
+            listAiringToday.addAll(it)
+            val airingTodayAdapter = AiringTodayAdapter(listAiringToday,navController)
             binding.rvTvShowsAiring.apply {
                 adapter = airingTodayAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
+            setLoading()
         })
 
         tvViewModel.getPopularTv().observe(viewLifecycleOwner, {
-            val popularTvShowsAdapter = PopularTvShowsAdapter(it,navController)
+            listPopularTv.addAll(it)
+            val popularTvShowsAdapter = PopularTvShowsAdapter(listPopularTv,navController)
             binding.rvTvShowsPopularTvShows.apply {
                 adapter = popularTvShowsAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
+            setLoading()
         })
+    }
+
+    fun setLoading(){
+        if (listPopularTv.size > 0 && listAiringToday.size > 0 && listOnTheAir.size > 0){
+            binding.containerItemFvsCl.visibility = View.VISIBLE
+            binding.loading.root.visibility = View.GONE
+        } else {
+            binding.containerItemFvsCl.visibility = View.GONE
+            binding.loading.root.visibility = View.VISIBLE
+        }
     }
 
 }
