@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_app_xml.R
 import com.example.movie_app_xml.api.ApiFactory
@@ -40,10 +42,11 @@ class TabMoviesFragment : Fragment() {
         tabMovieViewModel = TabMovieViewModel()
         tabMovieViewModel.repository = repository
 
+        val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         tabMovieViewModel.getAllMyMovies().observe(viewLifecycleOwner, {
             binding.rvFtmList.apply {
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                val adaptertvShow = TabMoviesAdapter(it)
+                val adaptertvShow = TabMoviesAdapter(it,navController)
                 adaptertvShow.notifyDataSetChanged()
                 adapter = adaptertvShow
             }

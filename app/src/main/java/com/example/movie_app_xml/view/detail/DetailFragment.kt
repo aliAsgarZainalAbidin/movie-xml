@@ -112,68 +112,71 @@ class DetailFragment : Fragment() {
             connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED
         ) {
             if (id != null && type != null) {
-                detailViewModel.getDetail(id.toString(), type).observe(viewLifecycleOwner, {
-                    binding.apply {
-                        ivFdImage.load("${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}") {
-                            crossfade(true)
-                            placeholder(R.color.grey)
-                        }
-                        backdropPath = "${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}"
-                        posterPath = "${BuildConfig.BASE_IMAGE_URL}${it.poster_path}"
+                when(typeRepo){
+                    Const.TYPE_REPO_REMOTE-> {
+                        detailViewModel.getDetail(id.toString(), type).observe(viewLifecycleOwner, {
+                            binding.apply {
+                                ivFdImage.load("${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}") {
+                                    crossfade(true)
+                                    placeholder(R.color.grey)
+                                }
+                                backdropPath = "${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}"
+                                posterPath = "${BuildConfig.BASE_IMAGE_URL}${it.poster_path}"
+                                when (type) {
+                                    Const.TYPE_MOVIE -> {
+                                        tvDetailTitle.text = it.title
+                                        mtvFdTitleDate.text = "Release Date"
+                                        mtvFdDate.text = it.release_date
+                                        detailViewModel.getMovieById(id.toString())
+                                            .observe(viewLifecycleOwner, {
+                                                if (it != null) {
+                                                    isSaved = it.isSaved ?: false
+                                                    if (isSaved) {
+                                                        lavFdSave.playAnimation()
+                                                    }
+                                                }
+                                            })
+                                    }
+                                    Const.TYPE_TV -> {
+                                        tvDetailTitle.text = it.name
+                                        mtvFdTitleDate.text = "First Air Date"
+                                        mtvFdDate.text = it.first_air_date
+                                        detailViewModel.getTvShowById(id.toString())
+                                            .observe(viewLifecycleOwner, {
+                                                if (it != null) {
+                                                    isSaved = it.isSaved ?: false
+                                                    if (isSaved) {
+                                                        lavFdSave.playAnimation()
+                                                    }
+                                                }
+                                            })
+                                    }
+                                }
+                                mtvFdPopularity.text = it.popularity.toString()
+                                mtvFdAdult.text = if (it.adult == true) "YES" else "NO"
+                                mtvFdLang.text = it.original_language
+                                listGenre = it.genres ?: listOf()
+                                rvFdChipGroup.adapter = GenreAdapter(listGenre)
+                                rvFdChipGroup.adapter?.notifyDataSetChanged()
+                                mtvFdOverview.text = it.overview
+                            }
+                        })
+                    }
+                    Const.TYPE_REPO_LOCAL->{
                         when (type) {
                             Const.TYPE_MOVIE -> {
-                                tvDetailTitle.text = it.title
-                                mtvFdTitleDate.text = "Release Date"
-                                mtvFdDate.text = it.release_date
-                                detailViewModel.getMovieById(id.toString())
-                                    .observe(viewLifecycleOwner, {
-                                        if (it != null) {
-                                            isSaved = it.isSaved ?: false
-                                            if (isSaved) {
-                                                lavFdSave.playAnimation()
-                                            }
-                                        }
-                                    })
+                                getLocalMovie(id.toString())
                             }
                             Const.TYPE_TV -> {
-                                tvDetailTitle.text = it.name
-                                mtvFdTitleDate.text = "First Air Date"
-                                mtvFdDate.text = it.first_air_date
-                                detailViewModel.getTvShowById(id.toString())
-                                    .observe(viewLifecycleOwner, {
-                                        if (it != null) {
-                                            isSaved = it.isSaved ?: false
-                                            if (isSaved) {
-                                                lavFdSave.playAnimation()
-                                            }
-                                        }
-                                    })
+                                getLocalTvShow(id.toString())
                             }
                         }
-                        mtvFdPopularity.text = it.popularity.toString()
-                        mtvFdAdult.text = if (it.adult == true) "YES" else "NO"
-                        mtvFdLang.text = it.original_language
-                        listGenre = it.genres ?: listOf()
-                        rvFdChipGroup.adapter = GenreAdapter(listGenre)
-                        rvFdChipGroup.adapter?.notifyDataSetChanged()
-                        mtvFdOverview.text = it.overview
                     }
-                })
+                }
             }
 //            IdleContent()
         } else {
-            if (id != null && type != null) {
-                when (type) {
-                    Const.TYPE_MOVIE -> {
-                        getLocalMovie(id.toString())
-                    }
-                    Const.TYPE_TV -> {
-                        getLocalTvShow(id.toString())
-                    }
-                }
-            } else {
-                //            OfflineContent()
-            }
+            //Offline Content
         }
 
 
@@ -193,6 +196,10 @@ class DetailFragment : Fragment() {
                 rvFdChipGroup.adapter = GenreAdapter(listGenre)
                 rvFdChipGroup.adapter?.notifyDataSetChanged()
                 mtvFdOverview.text = it.overview
+                isSaved = it.isSaved ?: false
+                if (isSaved) {
+                    lavFdSave.playAnimation()
+                }
             }
         })
     }
@@ -211,6 +218,10 @@ class DetailFragment : Fragment() {
                 rvFdChipGroup.adapter = GenreAdapter(listGenre)
                 rvFdChipGroup.adapter?.notifyDataSetChanged()
                 mtvFdOverview.text = it.overview
+                isSaved = it.isSaved ?: false
+                if (isSaved) {
+                    lavFdSave.playAnimation()
+                }
             }
         })
     }
