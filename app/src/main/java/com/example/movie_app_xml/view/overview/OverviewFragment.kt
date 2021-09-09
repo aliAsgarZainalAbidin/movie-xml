@@ -58,9 +58,9 @@ class OverviewFragment : Fragment() {
             }
         })
 
-//        val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
+        val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         overviewViewModel.getTrendingMovies().observe(viewLifecycleOwner, {
-            val trendingAdapter = TrendingAdapter(it)
+            val trendingAdapter = TrendingAdapter(it,navController)
             trendingAdapter.notifyDataSetChanged()
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvOverviewTrending.apply {

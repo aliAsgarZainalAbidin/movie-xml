@@ -10,11 +10,13 @@ import com.example.movie_app_xml.BuildConfig
 import com.example.movie_app_xml.R
 import com.example.movie_app_xml.data.entity.Trending
 import com.example.movie_app_xml.databinding.ItemPotraitBigBinding
+import com.example.movie_app_xml.model.Detail
+import com.example.movie_app_xml.util.Const
 import com.example.movie_app_xml.util.DetailConst
 
 class TrendingAdapter(
     private val listItem: List<Trending>,
-//    private val navController: NavController
+    private val navController: NavController
 ) : RecyclerView.Adapter<TrendingAdapter.TrendingViewholder>() {
 
     class TrendingViewholder(private val binding: ItemPotraitBigBinding) :
@@ -44,17 +46,11 @@ class TrendingAdapter(
         holder.itemView.setOnClickListener {
             val movie = listItem[position]
             val data = bundleOf(
-                DetailConst.TITLE to movie.title,
-                DetailConst.BACKDROP_PATH to movie.backdropPath,
-                DetailConst.DATE to movie.releaseDate,
-                DetailConst.TITLE_DATE to "Release Date",
-                DetailConst.POPULARITY to movie.popularity,
-                DetailConst.ADULT to if (movie.adult == true) "YES" else "NO",
-                DetailConst.LANGUAGE to movie.originalLanguage,
-                DetailConst.GENRE to movie.genreIds,
-                DetailConst.OVERVIEW to movie.overview
+                DetailConst.ID to movie.id,
+                Const.TYPE to Const.TYPE_MOVIE,
+                Const.TYPE_REPO to Const.TYPE_REPO_REMOTE
             )
-//            navController.navigate(R.id.detailFragment, data)
+            navController.navigate(R.id.detailFragment, data)
         }
     }
 
