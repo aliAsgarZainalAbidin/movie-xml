@@ -44,6 +44,7 @@ class TabTvShowsFragment : Fragment() {
 
         val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         tabTvShowViewModel.getAllTvShow().observe(viewLifecycleOwner, {
+            listTv.clear()
             listTv.addAll(it)
             binding.rvFttsList.apply {
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

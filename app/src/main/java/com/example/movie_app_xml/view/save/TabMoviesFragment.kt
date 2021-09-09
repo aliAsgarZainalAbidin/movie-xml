@@ -47,6 +47,7 @@ class TabMoviesFragment : Fragment() {
 
         val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         tabMovieViewModel.getAllMyMovies().observe(viewLifecycleOwner, {
+            listMovies.clear()
             listMovies.addAll(it)
             binding.rvFtmList.apply {
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
