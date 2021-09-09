@@ -66,7 +66,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:maxLines="1"
             android:textAlignment="textStart"
             android:textColor="@color/white"
             android:textStyle="bold"

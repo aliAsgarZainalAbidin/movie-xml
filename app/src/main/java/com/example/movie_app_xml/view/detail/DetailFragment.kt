@@ -15,6 +15,8 @@ import com.example.movie_app_xml.R
 import com.example.movie_app_xml.api.ApiFactory
 import com.example.movie_app_xml.data.AppDatabase
 import com.example.movie_app_xml.data.Repository
+import com.example.movie_app_xml.data.entity.MyMovie
+import com.example.movie_app_xml.data.entity.MyTvShow
 import com.example.movie_app_xml.databinding.FragmentDetailBinding
 import com.example.movie_app_xml.model.Genre
 import com.example.movie_app_xml.util.Const
@@ -29,6 +31,9 @@ class DetailFragment : Fragment() {
     private lateinit var detailViewModel: DetailViewModel
     private val restApi by lazy { ApiFactory.create() }
     private var listGenre: List<Genre> = listOf()
+    private var isSaved: Boolean = false
+    private var backdropPath: String = ""
+    private var posterPath: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,8 +53,53 @@ class DetailFragment : Fragment() {
         detailViewModel = DetailViewModel()
         detailViewModel.repository = Repository(restApi, AppDatabase.getDatabase(requireContext()))
 
-        binding.rvFdChipGroup.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.apply {
+            rvFdChipGroup.layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            lavFdSave.setOnClickListener {
+                if (isSaved) {
+                    when (type) {
+                        Const.TYPE_MOVIE -> detailViewModel.deleteMovieById(id.toString())
+                        Const.TYPE_TV -> detailViewModel.deleteTvShowById(id.toString())
+                    }
+                } else {
+                    when (type) {
+                        Const.TYPE_MOVIE -> {
+                            val myMovie = MyMovie(
+                                releaseDate = mtvFdDate.text.toString(),
+                                isSaved = true,
+                                adult = mtvFdAdult.text.toString().equals("YES", true),
+                                backdropPath = backdropPath,
+                                language = mtvFdLang.text.toString(),
+                                id = id,
+                                title = tvDetailTitle.text.toString(),
+                                overview = mtvFdOverview.text.toString(),
+                                popularity = mtvFdPopularity.text.toString().toDouble(),
+                                type = type,
+                                genreIds = listGenre,
+                                posterPath = posterPath
+                            )
+                            detailViewModel.insertToMyMovies(myMovie)
+                        }
+                        Const.TYPE_TV -> {
+                            val myTvShow = MyTvShow(
+                                id = id,
+                                type = type,
+                                name = tvDetailTitle.text.toString(),
+                                backdropPath = backdropPath,
+                                firstAirDate = mtvFdDate.text.toString(),
+                                popularity = mtvFdPopularity.text.toString().toDouble(),
+                                language = mtvFdLang.text.toString(),
+                                overview = mtvFdOverview.text.toString(),
+                                genres = listGenre,
+                                posterPath = posterPath,
+                                isSaved = true
+                            )
+                            detailViewModel.insertToMyTvShow(myTvShow)
+                        }
+                    }
+                }
+            }
         }
 
         val connectionManager =
@@ -60,18 +110,40 @@ class DetailFragment : Fragment() {
             if (id != null && type != null) {
                 detailViewModel.getDetail(id.toString(), type).observe(viewLifecycleOwner, {
                     binding.apply {
-                        ivFdImage.load("${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}")
+                        ivFdImage.load("${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}") {
+                            crossfade(true)
+                            placeholder(R.color.grey)
+                        }
+                        backdropPath = "${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}"
+                        posterPath = "${BuildConfig.BASE_IMAGE_URL}${it.poster_path}"
                         when (type) {
                             Const.TYPE_MOVIE -> {
                                 tvDetailTitle.text = it.title
                                 mtvFdTitleDate.text = "Release Date"
                                 mtvFdDate.text = it.release_date
-
+                                detailViewModel.getMovieById(id.toString())
+                                    .observe(viewLifecycleOwner, {
+                                        if (it != null) {
+                                            isSaved = it.isSaved ?: false
+                                            if (isSaved) {
+                                                lavFdSave.playAnimation()
+                                            }
+                                        }
+                                    })
                             }
                             Const.TYPE_TV -> {
                                 tvDetailTitle.text = it.name
                                 mtvFdTitleDate.text = "First Air Date"
                                 mtvFdDate.text = it.first_air_date
+                                detailViewModel.getTvShowById(id.toString())
+                                    .observe(viewLifecycleOwner, {
+                                        if (it != null) {
+                                            isSaved = it.isSaved ?: false
+                                            if (isSaved) {
+                                                lavFdSave.playAnimation()
+                                            }
+                                        }
+                                    })
                             }
                         }
                         mtvFdPopularity.text = it.popularity.toString()
@@ -86,7 +158,7 @@ class DetailFragment : Fragment() {
             }
 //            IdleContent()
         } else {
-            if (id != null && type != null){
+            if (id != null && type != null) {
                 when (type) {
                     Const.TYPE_MOVIE -> {
                         getLocalMovie(id.toString())
