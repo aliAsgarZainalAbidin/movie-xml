@@ -109,11 +109,13 @@ class DetailFragment : Fragment() {
         val connectionManager =
             requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (connectionManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.state == NetworkInfo.State.CONNECTED ||
-            connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED
+            connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED && !typeRepo?.equals(Const.TYPE_REPO_LOCAL)!!
         ) {
+            binding.containerItemFdCl.visibility = View.VISIBLE
+            binding.offline.root.visibility = View.GONE
             if (id != null && type != null) {
-                when(typeRepo){
-                    Const.TYPE_REPO_REMOTE-> {
+                when (typeRepo) {
+                    Const.TYPE_REPO_REMOTE -> {
                         detailViewModel.getDetail(id.toString(), type).observe(viewLifecycleOwner, {
                             binding.apply {
                                 ivFdImage.load("${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}") {
@@ -162,7 +164,7 @@ class DetailFragment : Fragment() {
                             }
                         })
                     }
-                    Const.TYPE_REPO_LOCAL->{
+                    Const.TYPE_REPO_LOCAL -> {
                         when (type) {
                             Const.TYPE_MOVIE -> {
                                 getLocalMovie(id.toString())
@@ -176,7 +178,8 @@ class DetailFragment : Fragment() {
             }
 //            IdleContent()
         } else {
-            //Offline Content
+            binding.containerItemFdCl.visibility = View.GONE
+            binding.offline.root.visibility = View.VISIBLE
         }
 
 

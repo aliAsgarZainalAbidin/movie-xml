@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue_900">
+
+    <ImageView
+        android:id="@+id/empty_el_lav"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_no_signal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_marginTop="16dp"
+        android:id="@+id/title_el_mtv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Koneksi internetmu terganggu"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/empty_el_lav"
+        app:layout_constraintStart_toStartOf="@id/empty_el_lav"
+        app:layout_constraintTop_toBottomOf="@id/empty_el_lav" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Yuk, pastikan internetmu lancar dengan \ncek ulang paket data, WiFi, atau jaringan di\ntempatmu"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/empty_el_lav"
+        app:layout_constraintStart_toStartOf="@id/empty_el_lav"
+        app:layout_constraintTop_toBottomOf="@id/title_el_mtv" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

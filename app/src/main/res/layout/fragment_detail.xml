@@ -7,219 +7,230 @@
     android:fillViewport="true"
     tools:context=".view.detail.DetailFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/dark_blue_900"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_fd_container"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/container_item_fd_cl"
             android:layout_width="match_parent"
-            android:layout_height="272dp"
-            app:cardCornerRadius="16dp"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:background="@color/dark_blue_900"
+            android:padding="16dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_fd_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="272dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/iv_fd_bg_save"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:elevation="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_ellipse_2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lav_fd_save"
-                    android:layout_width="24dp"
-                    android:elevation="2dp"
-                    android:layout_height="24dp"
-                    app:lottie_rawRes="@raw/lf30_editor_24"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_fd_bg_save"
-                    app:layout_constraintEnd_toEndOf="@id/iv_fd_bg_save"
-                    app:layout_constraintStart_toStartOf="@id/iv_fd_bg_save"
-                    app:layout_constraintTop_toTopOf="@id/iv_fd_bg_save" />
-
-                <ImageView
-                    android:id="@+id/iv_fd_image"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop" />
+                    android:layout_height="match_parent">
 
-                <View
-                    android:id="@+id/v_fd_container_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@color/dark_blue_900_t"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    <ImageView
+                        android:id="@+id/iv_fd_bg_save"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:elevation="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_ellipse_2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tv_detail_title"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:maxLines="1"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/v_fd_container_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/v_fd_container_title"
-                    tools:text="@string/app_name" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lav_fd_save"
+                        android:layout_width="24dp"
+                        android:elevation="2dp"
+                        android:layout_height="24dp"
+                        app:lottie_rawRes="@raw/lf30_editor_24"
+                        app:layout_constraintBottom_toBottomOf="@id/iv_fd_bg_save"
+                        app:layout_constraintEnd_toEndOf="@id/iv_fd_bg_save"
+                        app:layout_constraintStart_toStartOf="@id/iv_fd_bg_save"
+                        app:layout_constraintTop_toTopOf="@id/iv_fd_bg_save" />
+
+                    <ImageView
+                        android:id="@+id/iv_fd_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+                    <View
+                        android:id="@+id/v_fd_container_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:background="@color/dark_blue_900_t"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tv_detail_title"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="1"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/v_fd_container_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/v_fd_container_title"
+                        tools:text="@string/app_name" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_title_date"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/cv_fd_container"
-            app:layout_constraintTop_toBottomOf="@+id/cv_fd_container"
-            tools:text="Release Date" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_title_date"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/cv_fd_container"
+                app:layout_constraintTop_toBottomOf="@+id/cv_fd_container"
+                tools:text="Release Date" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_date"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/cv_fd_container"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_date"
-            tools:text="Release Date" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_date"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/cv_fd_container"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_date"
+                tools:text="Release Date" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_title_popularity"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Popularity"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/cv_fd_container"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_date" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_title_popularity"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Popularity"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/cv_fd_container"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_date" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_popularity"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/cv_fd_container"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_popularity"
-            tools:text="Release Date" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_popularity"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/cv_fd_container"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_popularity"
+                tools:text="Release Date" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_title_adult"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Adult"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/cv_fd_container" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_title_adult"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Adult"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/cv_fd_container" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_adult"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/mtv_fd_title_adult"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_adult"
-            tools:text="Release Date" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_adult"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/mtv_fd_title_adult"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_adult"
+                tools:text="Release Date" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_title_lang"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Language"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/mtv_fd_adult"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_adult" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_title_lang"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Language"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/mtv_fd_adult"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_adult" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_lang"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/mtv_fd_title_lang"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_lang"
-            tools:text="Release Date" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_lang"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/mtv_fd_title_lang"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_lang"
+                tools:text="Release Date" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_title_genre"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Genre"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/mtv_fd_popularity"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_popularity" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_title_genre"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Genre"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/mtv_fd_popularity"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_popularity" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_fd_chip_group"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mtv_fd_title_genre"
-            tools:listitem="@layout/item_chip" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_fd_chip_group"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mtv_fd_title_genre"
+                tools:listitem="@layout/item_chip" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_title_overview"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Overview"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/mtv_fd_popularity"
-            app:layout_constraintTop_toBottomOf="@+id/rv_fd_chip_group" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_title_overview"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Overview"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/mtv_fd_popularity"
+                app:layout_constraintTop_toBottomOf="@+id/rv_fd_chip_group" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/mtv_fd_overview"
-            style="@style/TextAppearance.MaterialComponents.Caption"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="@id/mtv_fd_popularity"
-            app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_overview"
-            tools:text="Overview" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mtv_fd_overview"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/mtv_fd_popularity"
+                app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_overview"
+                tools:text="Overview" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include android:id="@+id/offline"
+            layout="@layout/offline"/>
+
+    </FrameLayout>
 
 </androidx.core.widget.NestedScrollView>
