@@ -109,80 +109,82 @@ class DetailFragment : Fragment() {
         val connectionManager =
             requireContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (connectionManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)?.state == NetworkInfo.State.CONNECTED ||
-            connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED && !typeRepo?.equals(Const.TYPE_REPO_LOCAL)!!
+            connectionManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)?.state == NetworkInfo.State.CONNECTED && typeRepo?.equals(
+                Const.TYPE_REPO_REMOTE
+            ) == true
         ) {
             binding.loading.root.visibility = View.VISIBLE
             binding.offline.root.visibility = View.GONE
             if (id != null && type != null) {
-                when (typeRepo) {
-                    Const.TYPE_REPO_REMOTE -> {
-                        detailViewModel.getDetail(id.toString(), type).observe(viewLifecycleOwner, {
-                            binding.apply {
-                                ivFdImage.load("${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}") {
-                                    crossfade(true)
-                                    placeholder(R.color.grey)
-                                }
-                                backdropPath = "${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}"
-                                posterPath = "${BuildConfig.BASE_IMAGE_URL}${it.poster_path}"
-                                when (type) {
-                                    Const.TYPE_MOVIE -> {
-                                        tvDetailTitle.text = it.title
-                                        mtvFdTitleDate.text = "Release Date"
-                                        mtvFdDate.text = it.release_date
-                                        detailViewModel.getMovieById(id.toString())
-                                            .observe(viewLifecycleOwner, {
-                                                if (it != null) {
-                                                    isSaved = it.isSaved ?: false
-                                                    if (isSaved) {
-                                                        lavFdSave.playAnimation()
-                                                    }
-                                                }
-                                            })
-                                    }
-                                    Const.TYPE_TV -> {
-                                        tvDetailTitle.text = it.name
-                                        mtvFdTitleDate.text = "First Air Date"
-                                        mtvFdDate.text = it.first_air_date
-                                        detailViewModel.getTvShowById(id.toString())
-                                            .observe(viewLifecycleOwner, {
-                                                if (it != null) {
-                                                    isSaved = it.isSaved ?: false
-                                                    if (isSaved) {
-                                                        lavFdSave.playAnimation()
-                                                    }
-                                                }
-                                            })
-                                    }
-                                }
-                                mtvFdPopularity.text = it.popularity.toString()
-                                mtvFdAdult.text = if (it.adult == true) "YES" else "NO"
-                                mtvFdLang.text = it.original_language
-                                listGenre = it.genres ?: listOf()
-                                rvFdChipGroup.adapter = GenreAdapter(listGenre)
-                                rvFdChipGroup.adapter?.notifyDataSetChanged()
-                                mtvFdOverview.text = it.overview
-                                setContentDetail()
-                            }
-                        })
-                    }
-                    Const.TYPE_REPO_LOCAL -> {
+                detailViewModel.getDetail(id.toString(), type).observe(viewLifecycleOwner, {
+                    binding.apply {
+                        ivFdImage.load("${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}") {
+                            crossfade(true)
+                            placeholder(R.color.grey)
+                        }
+                        backdropPath = "${BuildConfig.BASE_IMAGE_URL}${it.backdrop_path}"
+                        posterPath = "${BuildConfig.BASE_IMAGE_URL}${it.poster_path}"
                         when (type) {
                             Const.TYPE_MOVIE -> {
-                                getLocalMovie(id.toString())
+                                tvDetailTitle.text = it.title
+                                mtvFdTitleDate.text = "Release Date"
+                                mtvFdDate.text = it.release_date
+                                detailViewModel.getMovieById(id.toString())
+                                    .observe(viewLifecycleOwner, {
+                                        if (it != null) {
+                                            isSaved = it.isSaved ?: false
+                                            if (isSaved) {
+                                                lavFdSave.playAnimation()
+                                            }
+                                        }
+                                    })
                             }
                             Const.TYPE_TV -> {
-                                getLocalTvShow(id.toString())
+                                tvDetailTitle.text = it.name
+                                mtvFdTitleDate.text = "First Air Date"
+                                mtvFdDate.text = it.first_air_date
+                                detailViewModel.getTvShowById(id.toString())
+                                    .observe(viewLifecycleOwner, {
+                                        if (it != null) {
+                                            isSaved = it.isSaved ?: false
+                                            if (isSaved) {
+                                                lavFdSave.playAnimation()
+                                            }
+                                        }
+                                    })
                             }
                         }
+                        mtvFdPopularity.text = it.popularity.toString()
+                        mtvFdAdult.text = if (it.adult == true) "YES" else "NO"
+                        mtvFdLang.text = it.original_language
+                        listGenre = it.genres ?: listOf()
+                        rvFdChipGroup.adapter = GenreAdapter(listGenre)
+                        rvFdChipGroup.adapter?.notifyDataSetChanged()
+                        mtvFdOverview.text = it.overview
                         setContentDetail()
                     }
-                }
+                })
             }
 //            IdleContent()
+        } else if (typeRepo?.equals(Const.TYPE_REPO_LOCAL) == true) {
+            binding.loading.root.visibility = View.VISIBLE
+            binding.offline.root.visibility = View.GONE
+            if (id != null) {
+                when (type) {
+                    Const.TYPE_MOVIE -> {
+                        getLocalMovie(id.toString())
+                    }
+                    Const.TYPE_TV -> {
+                        getLocalTvShow(id.toString())
+                    }
+                }
+                setContentDetail()
+            }
         } else {
             binding.containerItemFdCl.visibility = View.GONE
             binding.loading.root.visibility = View.GONE
             binding.offline.root.visibility = View.VISIBLE
+
         }
 
 
@@ -207,7 +209,7 @@ class DetailFragment : Fragment() {
                 if (isSaved) {
                     lavFdSave.playAnimation()
                 }
-                if (it !=null){
+                if (it != null) {
                     loading.root.visibility = View.GONE
                     containerItemFdCl.visibility = View.VISIBLE
                 }
@@ -234,7 +236,7 @@ class DetailFragment : Fragment() {
                 if (isSaved) {
                     lavFdSave.playAnimation()
                 }
-                if (it !=null){
+                if (it != null) {
                     loading.root.visibility = View.GONE
                     containerItemFdCl.visibility = View.VISIBLE
                 }
@@ -242,8 +244,8 @@ class DetailFragment : Fragment() {
         })
     }
 
-    fun setContentDetail(){
-        if (backdropPath.isNotEmpty()){
+    fun setContentDetail() {
+        if (backdropPath.isNotEmpty()) {
             binding.containerItemFdCl.visibility = View.VISIBLE
             binding.loading.root.visibility = View.GONE
         } else {
