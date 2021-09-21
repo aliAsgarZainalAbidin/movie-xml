@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.movie_app_xml.data.dao.*
 import com.example.movie_app_xml.data.entity.*
-import com.example.movie_app_xml.model.*
+import com.example.movie_app_xml.data.dao.*
 
 @Database(
     entities = arrayOf(
@@ -20,7 +20,9 @@ import com.example.movie_app_xml.model.*
         AiringToday::class,
         PopularTv::class,
         MyMovie::class,
-        MyTvShow::class
+        MyTvShow::class,
+        TrendingLocal::class,
+        OnTheAirLocal::class,
     ), version = 1,
     exportSchema = false
 )
@@ -36,6 +38,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun PopularTvDao(): PopularTvDao
     abstract fun MyMovieDao(): MyMovieDao
     abstract fun MyTvShowDao(): MyTvShowDao
+    abstract fun TrendingLocalDao() : TrendingLocalDao
+    abstract fun OnTheAirLocalDao() : OnTheAirLocalDao
 
     companion object {
         @Volatile

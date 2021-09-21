@@ -13,13 +13,9 @@ import com.example.movie_app_xml.api.ApiFactory
 import com.example.movie_app_xml.data.AppDatabase
 import com.example.movie_app_xml.data.Repository
 import com.example.movie_app_xml.data.entity.MyMovie
-import com.example.movie_app_xml.data.entity.PopularTv
 import com.example.movie_app_xml.databinding.FragmentTabMoviesBinding
-import com.example.movie_app_xml.databinding.FragmentTabTvShowsBinding
 import com.example.movie_app_xml.view.adapter.TabMoviesAdapter
-import com.example.movie_app_xml.view.adapter.TabTvShowsAdapter
 import com.example.movie_app_xml.view_model.TabMovieViewModel
-import com.example.movie_app_xml.view_model.TabTvShowViewModel
 
 class TabMoviesFragment : Fragment() {
 

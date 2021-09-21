@@ -9,13 +9,10 @@ import com.example.movie_app_xml.util.TvShow
 import com.google.gson.annotations.SerializedName
 
 @Entity
-data class MyTvShow(
+data class OnTheAirLocal(
     @ColumnInfo(name = "vote_average")
     @field:SerializedName("vote_average")
     var voteAverage: Float? = 0.0f,
-
-    @ColumnInfo(name = "is_saved")
-    var isSaved: Boolean? = false,
 
     @ColumnInfo(name = "backdrop_path")
     @field:SerializedName("backdrop_path")
@@ -52,8 +49,11 @@ data class MyTvShow(
     @PrimaryKey
     @ColumnInfo(name = "id")
     @field:SerializedName("id")
-    var id: Int? = -1,
+    var id: Int? = null,
 
-    var type: String? = "",
-    var typeRepo: String? = Const.TYPE_REPO_LOCAL,
+    @ColumnInfo(name = "type_trending")
+    var typeOnTheAir : String? = Const.TYPE_ONTHEAIR_LOCAL,
+
+    @ColumnInfo(name = "adult")
+    var adult : Boolean? = false
 )

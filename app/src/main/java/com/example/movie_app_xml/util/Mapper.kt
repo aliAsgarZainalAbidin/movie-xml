@@ -5,7 +5,7 @@ import com.example.movie_app_xml.model.Detail
 
 open class Mapper {
 
-    fun mapDetailToMyMovie(data : Detail): MyMovie{
+    fun mapDetailToMyMovie(data : Detail): MyMovie {
         return MyMovie(
             data.release_date,
             true,

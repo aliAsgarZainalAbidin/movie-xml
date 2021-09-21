@@ -10,7 +10,6 @@ import com.example.movie_app_xml.BuildConfig
 import com.example.movie_app_xml.R
 import com.example.movie_app_xml.data.entity.Trending
 import com.example.movie_app_xml.databinding.ItemPotraitBigBinding
-import com.example.movie_app_xml.model.Detail
 import com.example.movie_app_xml.util.Const
 import com.example.movie_app_xml.util.DetailConst
 

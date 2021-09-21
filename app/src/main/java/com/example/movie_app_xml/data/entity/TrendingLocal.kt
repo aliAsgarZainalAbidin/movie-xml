@@ -3,11 +3,13 @@ package com.example.movie_app_xml.data.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.movie_app_xml.model.Genre
+import com.example.movie_app_xml.util.Const
 import com.example.movie_app_xml.util.Movie
 import com.google.gson.annotations.SerializedName
 
 @Entity
-data class Playing(
+data class TrendingLocal(
     @ColumnInfo(name = "release_date")
     @field:SerializedName("release_date")
     var releaseDate: String? = "",
@@ -24,9 +26,13 @@ data class Playing(
     @field:SerializedName("genre_ids")
     var genreIds: List<Int>? = listOf(),
 
+    @ColumnInfo(name = "genre")
+    @field:SerializedName("genre")
+    var genres: List<Genre>? = listOf(),
+
     @ColumnInfo(name = "vote_count")
     @field:SerializedName("vote_count")
-    var voteCounts: Int? = -1,
+    var voteCounts: Int? = 0,
 
     @ColumnInfo(name = "original_language")
     @field:SerializedName("original_language")
@@ -44,10 +50,10 @@ data class Playing(
     @field:SerializedName("video")
     var video: Boolean? = false,
 
-    @PrimaryKey
-    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id_local")
     @field:SerializedName("id")
-    var id: Int? = null,
+    var id_local: Int? = null,
 
     @ColumnInfo(name = "vote_average")
     @field:SerializedName("vote_average")
@@ -68,4 +74,7 @@ data class Playing(
     @ColumnInfo(name = "mediaType")
     @field:SerializedName("media_type")
     var mediaType: String? = "",
+
+    @ColumnInfo(name = "type_trending")
+    var typeTrending : String? = Const.TYPE_TRENDING_LOCAL
 )

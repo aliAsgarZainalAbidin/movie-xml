@@ -6,11 +6,8 @@ import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.movie_app_xml.BuildConfig
 import com.example.movie_app_xml.R
-import com.example.movie_app_xml.data.entity.MyMovie
 import com.example.movie_app_xml.data.entity.MyTvShow
-import com.example.movie_app_xml.databinding.FragmentTabMoviesBinding
 import com.example.movie_app_xml.databinding.ItemRowBinding
 import com.example.movie_app_xml.util.Const
 import com.example.movie_app_xml.util.DetailConst

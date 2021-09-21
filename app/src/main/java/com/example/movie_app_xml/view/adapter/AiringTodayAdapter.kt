@@ -9,7 +9,6 @@ import coil.load
 import com.example.movie_app_xml.BuildConfig
 import com.example.movie_app_xml.R
 import com.example.movie_app_xml.data.entity.AiringToday
-import com.example.movie_app_xml.data.entity.OnTheAir
 import com.example.movie_app_xml.databinding.ItemLandscapeBinding
 import com.example.movie_app_xml.util.Const
 import com.example.movie_app_xml.util.DetailConst

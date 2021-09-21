@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.movie_app_xml.model.Genre
+import com.example.movie_app_xml.util.Const
 import com.example.movie_app_xml.util.Movie
 import com.google.gson.annotations.SerializedName
 
@@ -74,5 +75,6 @@ data class MyMovie(
     var mediaType: String? = "",
 
     var type: String? = "",
+    var typeRepo: String? = Const.TYPE_REPO_LOCAL,
     var language: String? = "",
 )
