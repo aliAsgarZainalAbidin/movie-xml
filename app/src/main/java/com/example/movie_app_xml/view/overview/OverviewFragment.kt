@@ -51,11 +51,27 @@ class OverviewFragment : Fragment() {
 
         overviewViewModel = OverviewViewModel()
         overviewViewModel.repositor = Repository(restApi, AppDatabase.getDatabase(this.requireContext()))
+        getListItem()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getListItem()
+    }
+
+    private fun getListItem(){
+        val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
+
+        val peopleAdapter = PopularAdapter(listPeople)
+        val trendingAdapter = TrendingAdapter(listTrending,navController,requireActivity())
+        val onTheAirAdapter = OnTheAirAdapter(listOnTheAir,navController,requireActivity())
+        peopleAdapter.notifyDataSetChanged()
+        trendingAdapter.notifyDataSetChanged()
+        onTheAirAdapter.notifyDataSetChanged()
 
         overviewViewModel.getPopularPeople().observe(viewLifecycleOwner,{
+            listPeople.clear()
             listPeople.addAll(it)
-            val peopleAdapter = PopularAdapter(listPeople)
-            peopleAdapter.notifyDataSetChanged()
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvOverviewPopular.apply {
                 adapter = peopleAdapter
@@ -64,11 +80,9 @@ class OverviewFragment : Fragment() {
             setLoading()
         })
 
-        val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         overviewViewModel.getTrendingMovies().observe(viewLifecycleOwner, {
+            listTrending.clear()
             listTrending.addAll(it)
-            val trendingAdapter = TrendingAdapter(listTrending,navController)
-            trendingAdapter.notifyDataSetChanged()
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvOverviewTrending.apply {
                 adapter = trendingAdapter
@@ -78,9 +92,8 @@ class OverviewFragment : Fragment() {
         })
 
         overviewViewModel.getOnTheAir().observe(viewLifecycleOwner, {
+            listOnTheAir.clear()
             listOnTheAir.addAll(it)
-            val onTheAirAdapter = OnTheAirAdapter(listOnTheAir,navController)
-            onTheAirAdapter.notifyDataSetChanged()
             val lm = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             binding.rvOverviewOntheair.apply {
                 adapter = onTheAirAdapter

@@ -47,7 +47,7 @@ class TabTvShowsFragment : Fragment() {
             listTv.addAll(it)
             binding.rvFttsList.apply {
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                val adaptertvShow = TabTvShowsAdapter(listTv,navController)
+                val adaptertvShow = TabTvShowsAdapter(listTv,navController,requireActivity())
                 adaptertvShow.notifyDataSetChanged()
                 adapter = adaptertvShow
             }

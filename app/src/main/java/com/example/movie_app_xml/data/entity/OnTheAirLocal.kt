@@ -55,5 +55,8 @@ data class OnTheAirLocal(
     var typeOnTheAir : String? = Const.TYPE_ONTHEAIR_LOCAL,
 
     @ColumnInfo(name = "adult")
-    var adult : Boolean? = false
+    var adult : Boolean? = false,
+
+    @ColumnInfo(name = "is_saved")
+    var isSaved: Boolean? = false,
 )

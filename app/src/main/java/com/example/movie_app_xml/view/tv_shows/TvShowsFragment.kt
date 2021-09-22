@@ -45,7 +45,7 @@ class TvShowsFragment : Fragment() {
         val navController = (activity as AppCompatActivity).findNavController(R.id.fcv_base_container)
         tvViewModel.getOnTheAir().observe(viewLifecycleOwner, {
             listOnTheAir.addAll(it)
-            val ontheairAdapter = OnTheAirAdapter(listOnTheAir,navController)
+            val ontheairAdapter = OnTheAirAdapter(listOnTheAir,navController,requireActivity())
             binding.rvTvShowsOntheair.apply {
                 adapter = ontheairAdapter
                 layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

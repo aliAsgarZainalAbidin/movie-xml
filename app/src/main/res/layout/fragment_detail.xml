@@ -12,7 +12,6 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:visibility="gone"
             android:id="@+id/container_item_fd_cl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -34,23 +33,34 @@
                         android:id="@+id/iv_fd_bg_save"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:elevation="1dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
+                        android:elevation="1dp"
                         android:src="@drawable/ic_ellipse_2"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/iv_fd_back"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:elevation="1dp"
+                        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/lav_fd_save"
                         android:layout_width="24dp"
-                        android:elevation="2dp"
                         android:layout_height="24dp"
-                        app:lottie_rawRes="@raw/lf30_editor_24"
+                        android:elevation="2dp"
                         app:layout_constraintBottom_toBottomOf="@id/iv_fd_bg_save"
                         app:layout_constraintEnd_toEndOf="@id/iv_fd_bg_save"
                         app:layout_constraintStart_toStartOf="@id/iv_fd_bg_save"
-                        app:layout_constraintTop_toTopOf="@id/iv_fd_bg_save" />
+                        app:layout_constraintTop_toTopOf="@id/iv_fd_bg_save"
+                        app:lottie_rawRes="@raw/lf30_editor_24" />
 
                     <ImageView
                         android:id="@+id/iv_fd_image"
@@ -226,13 +236,27 @@
                 app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_overview"
                 tools:text="Overview" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Hapus"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/mtv_fd_overview" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include android:id="@+id/offline"
-            layout="@layout/offline"/>
+        <include
+            android:id="@+id/offline"
+            layout="@layout/offline"
+            android:visibility="gone" />
 
-        <include android:id="@+id/loading"
-            layout="@layout/loading_layout"/>
+        <include
+            android:id="@+id/loading"
+            layout="@layout/loading_layout"
+            android:visibility="gone" />
 
     </FrameLayout>
 

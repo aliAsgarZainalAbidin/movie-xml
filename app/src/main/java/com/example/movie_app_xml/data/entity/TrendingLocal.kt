@@ -76,5 +76,8 @@ data class TrendingLocal(
     var mediaType: String? = "",
 
     @ColumnInfo(name = "type_trending")
-    var typeTrending : String? = Const.TYPE_TRENDING_LOCAL
+    var typeTrending : String? = Const.TYPE_TRENDING_LOCAL,
+
+    @ColumnInfo(name = "is_saved")
+    var isSaved: Boolean? = false,
 )
