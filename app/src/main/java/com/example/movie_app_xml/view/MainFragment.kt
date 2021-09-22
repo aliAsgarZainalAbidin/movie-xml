@@ -33,16 +33,20 @@ class MainFragment : Fragment() {
         navController =
             childFragmentManager.findFragmentById(R.id.fcv_main_container)?.findNavController()
                 ?: this.navController
-        navController.popBackStack(navController.currentDestination?.id ?: R.id.overview, true)
+        navController.popBackStack(navController.currentDestination?.id ?: R.id.home, true)
         binding.botnavMainContainer.setOnNavigationItemSelectedListener {
             navController.popBackStack()
             when (it.itemId) {
-                R.id.overview -> {
+                R.id.home -> {
                     navController.navigate(R.id.overviewFragment)
                     true
                 }
                 R.id.movies -> {
                     navController.navigate(R.id.moviesFragment)
+                    true
+                }
+                R.id.add -> {
+                    navController.navigate(R.id.addFragment)
                     true
                 }
                 R.id.tvShows -> {

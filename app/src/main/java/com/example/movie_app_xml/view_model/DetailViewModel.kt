@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.example.movie_app_xml.data.Repository
 import com.example.movie_app_xml.data.entity.MyMovie
 import com.example.movie_app_xml.data.entity.MyTvShow
+import com.example.movie_app_xml.data.entity.OnTheAirLocal
+import com.example.movie_app_xml.data.entity.TrendingLocal
 import com.example.movie_app_xml.model.Detail
 
 class DetailViewModel : ViewModel() {
@@ -39,6 +41,24 @@ class DetailViewModel : ViewModel() {
 
     fun deleteTvShowById(id: String){
         repository.deleteTvShowById(id)
+    }
+
+    fun getLocalTrending(id: String):LiveData<TrendingLocal>{
+        repository.requestLocalTrendingById(id)
+        return repository.getDetailLocalTrending()
+    }
+
+    fun getLocalOnTheAir(id: String):LiveData<OnTheAirLocal>{
+        repository.requestlocalOnTheAirById(id)
+        return repository.getDetaillocalOnTheAir()
+    }
+
+    fun deletedLocalOnTheAirById(id : String){
+        repository.deletelocalOnTheAirById(id)
+    }
+
+    fun deletedLocalTrendingById(id : String){
+        repository.deleteLocalTrendingById(id)
     }
 
 }
