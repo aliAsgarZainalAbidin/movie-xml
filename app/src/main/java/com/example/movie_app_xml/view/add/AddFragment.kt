@@ -115,13 +115,6 @@ class AddFragment : Fragment() {
                     vLanguage = s.toString()
                 }
             })
-            tietAddGenre.addTextChangedListener(object : TextWatcher{
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-                override fun afterTextChanged(s: Editable?) {}
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    vGenre = s.toString()
-                }
-            })
             tietAddOverview.addTextChangedListener(object : TextWatcher{
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun afterTextChanged(s: Editable?) {}
@@ -130,7 +123,7 @@ class AddFragment : Fragment() {
                 }
             })
             btnAddSave.setOnClickListener {
-                if (vTitle.isNotEmpty() && vPopularity.isNotEmpty() && vAdult.isNotEmpty() && adultPosition > 0 && vDate.isNotEmpty() && vLanguage.isNotEmpty() && vGenre.isNotEmpty() && vOverview.isNotEmpty() && vType.isNotEmpty() && typePosition > 0) {
+                if (vTitle.isNotEmpty() && vPopularity.isNotEmpty() && vAdult.isNotEmpty() && adultPosition > 0 && vDate.isNotEmpty() && vLanguage.isNotEmpty()  && vOverview.isNotEmpty() && vType.isNotEmpty() && typePosition > 0) {
                     if (vType.equals("Movie")) {
                         val trending = TrendingLocal()
                         trending.title = vTitle
@@ -139,9 +132,19 @@ class AddFragment : Fragment() {
                         trending.adult = vAdult.equals("Yes")
                         trending.originalLanguage = vLanguage
                         var listGenre = ArrayList<Genre>()
-                        vGenre.split(",").forEach {
+                        if (checkboxRomance.isChecked){
                             val genre = Genre()
-                            genre.name = it
+                            genre.name = checkboxRomance.text.toString()
+                            listGenre.add(genre)
+                        }
+                        if (checkboxAction.isChecked){
+                            val genre = Genre()
+                            genre.name = checkboxAction.text.toString()
+                            listGenre.add(genre)
+                        }
+                        if (checkboxHorror.isChecked){
+                            val genre = Genre()
+                            genre.name = checkboxHorror.text.toString()
                             listGenre.add(genre)
                         }
                         trending.backdropPath = currentPhotoPath
@@ -153,9 +156,19 @@ class AddFragment : Fragment() {
                         addViewModel.insertTrendingMovie(trending)
                     } else if (vType.equals("Tv Show")) {
                         var listGenre = ArrayList<Genre>()
-                        vGenre.split(",").forEach {
+                        if (checkboxRomance.isChecked){
                             val genre = Genre()
-                            genre.name = it
+                            genre.name = checkboxRomance.text.toString()
+                            listGenre.add(genre)
+                        }
+                        if (checkboxAction.isChecked){
+                            val genre = Genre()
+                            genre.name = checkboxAction.text.toString()
+                            listGenre.add(genre)
+                        }
+                        if (checkboxHorror.isChecked){
+                            val genre = Genre()
+                            genre.name = checkboxHorror.text.toString()
                             listGenre.add(genre)
                         }
 
@@ -179,7 +192,6 @@ class AddFragment : Fragment() {
                     btnAddPickDate.text = ""
                     tietAddPopularity.setText("")
                     tietAddLang.setText("")
-                    tietAddGenre.setText("")
                     tietAddOverview.setText("")
                     actvAddAdult.setText("")
                     actvAddType.setText("")

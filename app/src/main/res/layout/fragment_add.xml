@@ -66,8 +66,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tiet_add_popularity"
                 android:layout_width="match_parent"
-                android:inputType="number"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 tools:text="Title" />
@@ -91,8 +91,8 @@
             android:layout_height="58dp"
             android:background="@color/green_800"
             android:backgroundTint="@color/green_800"
-            app:backgroundTint="@color/green_800"
             android:text=""
+            app:backgroundTint="@color/green_800"
             app:layout_constraintTop_toBottomOf="@id/mtv_add_title_date" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -138,27 +138,34 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_add_genre"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+        <CheckBox
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/checkbox_romance"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Genre"
-            android:textColorHint="@color/white"
-            app:boxStrokeColor="@color/green_500"
-            app:layout_constraintTop_toBottomOf="@id/til_add_lang"
-            app:placeholderTextColor="@color/white">
+            android:text="Romance"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/til_add_lang" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tiet_add_genre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="14sp" />
+        <CheckBox
+            android:id="@+id/checkbox_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/checkbox_horror"
+            app:layout_constraintStart_toEndOf="@id/checkbox_romance"
+            app:layout_constraintTop_toTopOf="@id/checkbox_romance" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        <CheckBox
+            android:id="@+id/checkbox_horror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horror"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/checkbox_romance" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_add_overview"
@@ -169,7 +176,7 @@
             android:hint="Overview"
             android:textColorHint="@color/white"
             app:boxStrokeColor="@color/green_500"
-            app:layout_constraintTop_toBottomOf="@id/til_add_genre"
+            app:layout_constraintTop_toBottomOf="@id/checkbox_romance"
             app:placeholderTextColor="@color/white">
 
             <com.google.android.material.textfield.TextInputEditText
