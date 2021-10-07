@@ -89,6 +89,9 @@
             android:id="@+id/btn_add_pick_date"
             android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:background="@color/green_800"
+            android:backgroundTint="@color/green_800"
+            app:backgroundTint="@color/green_800"
             android:text=""
             app:layout_constraintTop_toBottomOf="@id/mtv_add_title_date" />
 

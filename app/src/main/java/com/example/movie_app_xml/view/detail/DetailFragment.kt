@@ -9,6 +9,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -66,23 +68,44 @@ class DetailFragment : Fragment() {
             when (typeRepo) {
                 Const.TYPE_TRENDING_LOCAL -> {
                     btnDelete.visibility = View.VISIBLE
+                    tilFdVoteaverage.visibility = View.VISIBLE
                     btnDelete.setOnClickListener {
                         detailViewModel.deleteMovieById(id.toString())
                         detailViewModel.deletedLocalTrendingById(id.toString())
                         activity?.onBackPressed()
                     }
+                    tietAddPopularity.addTextChangedListener(object : TextWatcher{
+                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                            detailViewModel.updateVoteAvarageTrending(id.toString(),s.toString().toFloat())
+                        }
+
+                        override fun afterTextChanged(s: Editable?) {}
+                    })
                 }
                 Const.TYPE_ONTHEAIR_LOCAL -> {
                     btnDelete.visibility = View.VISIBLE
+                    tilFdVoteaverage.visibility = View.VISIBLE
                     btnDelete.setOnClickListener {
                         detailViewModel.deleteTvShowById(id.toString())
                         detailViewModel.deletedLocalOnTheAirById(id.toString())
 
                         activity?.onBackPressed()
                     }
+                    tietAddPopularity.addTextChangedListener(object : TextWatcher{
+                        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                            detailViewModel.updateVoteAvarageOnTheAir(id.toString(),s.toString().toFloat())
+                        }
+
+                        override fun afterTextChanged(s: Editable?) {}
+                    })
                 }
                 else -> {
                     btnDelete.visibility = View.GONE
+                    tilFdVoteaverage.visibility = View.GONE
                 }
             }
 

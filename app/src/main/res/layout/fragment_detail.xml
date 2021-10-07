@@ -236,6 +236,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/mtv_fd_title_overview"
                 tools:text="Overview" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_fd_voteaverage"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="Vote Average"
+                android:visibility="gone"
+                android:textColorHint="@color/white"
+                app:boxStrokeColor="@color/green_500"
+                app:layout_constraintTop_toBottomOf="@id/mtv_fd_overview"
+                app:placeholderTextColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_add_popularity"
+                    android:layout_width="match_parent"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    tools:text="Title" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_delete"
                 android:layout_width="match_parent"
@@ -244,7 +268,7 @@
                 android:text="Hapus"
                 android:textAllCaps="false"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/mtv_fd_overview" />
+                app:layout_constraintTop_toBottomOf="@id/til_fd_voteaverage" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
