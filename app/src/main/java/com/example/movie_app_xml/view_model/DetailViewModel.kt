@@ -69,4 +69,12 @@ class DetailViewModel : ViewModel() {
         repository.updateVoteAverageOnTheAir(id, voteAverage)
     }
 
+    fun deleteTrendingById(id: String){
+        repository.deleteTrendingById(id)
+    }
+
+    fun deleteOnTheAirById(id: String){
+        repository.deleteOnTheAirById(id)
+    }
+
 }

@@ -71,6 +71,7 @@ class DetailFragment : Fragment() {
                     tilFdVoteaverage.visibility = View.VISIBLE
                     btnDelete.setOnClickListener {
                         detailViewModel.deleteMovieById(id.toString())
+                        detailViewModel.deleteTrendingById(id.toString())
                         detailViewModel.deletedLocalTrendingById(id.toString())
                         activity?.onBackPressed()
                     }
@@ -89,6 +90,7 @@ class DetailFragment : Fragment() {
                     tilFdVoteaverage.visibility = View.VISIBLE
                     btnDelete.setOnClickListener {
                         detailViewModel.deleteTvShowById(id.toString())
+                        detailViewModel.deleteOnTheAirById(id.toString())
                         detailViewModel.deletedLocalOnTheAirById(id.toString())
 
                         activity?.onBackPressed()
